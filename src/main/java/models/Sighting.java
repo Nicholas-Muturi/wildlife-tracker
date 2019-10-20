@@ -1,3 +1,5 @@
+package models;
+
 import org.sql2o.Connection;
 import org.sql2o.Sql2oException;
 
@@ -55,7 +57,7 @@ public class Sighting {
         return id;
     }
 
-    /*-------------- DB OPERATIONS --------------*/
+    /*-------------- models.DB OPERATIONS --------------*/
     public void save(){
         String sql = "INSERT INTO sightings(animalid,location,timestamp,rangerid) values (:animalid,:location,:timestamp,:rangerid)";
         try(Connection con = DB.sql2o.open()){

@@ -1,11 +1,10 @@
+import models.Sighting;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import static org.junit.Assert.*;
 

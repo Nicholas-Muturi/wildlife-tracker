@@ -1,12 +1,15 @@
+package models;
+
 import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 import java.util.Objects;
 
-public class EndangeredAnimal extends Animal {
+public class NormalAnimal extends Animal {
     private static final String type = "Not Endangered";
 
-    public EndangeredAnimal(String name, String health, String age) {
+    public NormalAnimal(String name, String health, String age) {
         this.name = name;
         this.health = health;
         this.age = age;
@@ -16,10 +19,10 @@ public class EndangeredAnimal extends Animal {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EndangeredAnimal EndangeredAnimal = (EndangeredAnimal) o;
-        return  Objects.equals(name, EndangeredAnimal.name) &&
-                Objects.equals(health, EndangeredAnimal.health) &&
-                Objects.equals(age, EndangeredAnimal.age);
+        NormalAnimal normalAnimal = (NormalAnimal) o;
+        return  Objects.equals(name, normalAnimal.name) &&
+                Objects.equals(health, normalAnimal.health) &&
+                Objects.equals(age, normalAnimal.age);
     }
 
     @Override
@@ -71,7 +74,7 @@ public class EndangeredAnimal extends Animal {
         return ageTypes;
     }*/
 
-    /* ----------------- DB OPERATIONS ---------------- */
+    /* ----------------- models.DB OPERATIONS ---------------- */
     public void save(){
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO animals(name,health, age, type) values (:name,:health,:age,:type)";
@@ -82,26 +85,29 @@ public class EndangeredAnimal extends Animal {
                     .addParameter("type",type)
                     .executeUpdate()
                     .getKey();
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
         }
     }
 
-    public static List<EndangeredAnimal> all(){
+    public static List<NormalAnimal> all(){
         String sql = "SELECT * FROM animals where type=:type";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("type",type)
-                    .executeAndFetch(EndangeredAnimal.class);
+                    .executeAndFetch(NormalAnimal.class);
         }
     }
 
-    public static EndangeredAnimal find(int searchId){
+    public static NormalAnimal find(int searchId){
         String sql = "SELECT * FROM animals where (id=:id AND type=:type)";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("id",searchId)
                     .addParameter("type",type)
-                    .executeAndFetchFirst(EndangeredAnimal.class);
+                    .executeAndFetchFirst(NormalAnimal.class);
         }
     }
+
 
 }

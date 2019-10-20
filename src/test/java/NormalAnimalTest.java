@@ -1,3 +1,4 @@
+import models.NormalAnimal;
 import org.junit.Rule;
 import org.junit.Test;
 

@@ -1,9 +1,10 @@
+package models;
+
 import org.sql2o.Connection;
 import org.sql2o.Sql2oException;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class Ranger {
     private int id;
@@ -34,7 +35,7 @@ public class Ranger {
         return name;
     }
 
-    /*-------------- DB OPERATIONS --------------*/
+    /*-------------- models.DB OPERATIONS --------------*/
     public void save(){
         String sql = "INSERT INTO rangers(name) VALUES(:name)";
         try(Connection con = DB.sql2o.open()){

@@ -1,3 +1,4 @@
+import models.EndangeredAnimal;
 import org.junit.Rule;
 import org.junit.Test;
 
