@@ -54,8 +54,12 @@ public class Ranger {
        }
     }
 
-    public static Random find(int searchId){
-        return null;
+    public static Ranger find(int searchId){
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery("SELECT * FROM rangers WHERE id=:id")
+                    .addParameter("id",searchId)
+                    .executeAndFetchFirst(Ranger.class);
+        }
     }
 
     public List<Sighting> mySightings(){

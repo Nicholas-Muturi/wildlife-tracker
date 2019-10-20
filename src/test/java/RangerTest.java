@@ -45,4 +45,13 @@ public class RangerTest {
         assertTrue(Ranger.all().contains(ranger1));
     }
 
+    @Test
+    public void find_getParticularRanger(){
+        Ranger ranger = newRanger();
+        Ranger ranger1 = new Ranger("Stark");
+        ranger.save();
+        ranger1.save();
+        assertTrue(Ranger.find(ranger.getId()).equals(ranger));
+    }
+
 }
