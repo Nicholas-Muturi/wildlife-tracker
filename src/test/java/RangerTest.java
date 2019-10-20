@@ -54,4 +54,23 @@ public class RangerTest {
         assertTrue(Ranger.find(ranger.getId()).equals(ranger));
     }
 
+    @Test
+    public void add_preventDuplicateRanger(){
+        Ranger ranger1 = newRanger();
+        Ranger ranger2 = newRanger();
+        ranger1.save();
+        ranger2.save();
+        for(Ranger ranger:Ranger.all()){
+            if (ranger2.equals(ranger)){
+                ranger2.delete();
+                break;
+            }
+        }
+        assertEquals(1,Ranger.all().size());
+    }
+
+
+
+
+
 }

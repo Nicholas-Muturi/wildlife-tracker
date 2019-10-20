@@ -63,7 +63,20 @@ public class Ranger {
     }
 
     public List<Sighting> mySightings(){
-        return null;
+        String sql = "SELECT * FROM sighting WHERE rangerid=:id";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("id",this.id)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
+    public void delete(){
+        try(Connection con = DB.sql2o.open()){
+             con.createQuery("DELETE FROM rangers WHERE id=:id")
+                     .addParameter("id",this.id)
+                    .executeUpdate();
+        }
     }
 
 }
