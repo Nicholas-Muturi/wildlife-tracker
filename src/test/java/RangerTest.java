@@ -1,10 +1,9 @@
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.Random;
-
 import static org.junit.Assert.*;
 
+@SuppressWarnings("ConstantConditions")
 public class RangerTest {
 
     @Rule
@@ -24,6 +23,14 @@ public class RangerTest {
     public void getName_returnRangerName_true(){
         Ranger ranger = newRanger();
         assertEquals("Nike",ranger.getName());
+    }
+
+    @Test
+    public void save_getRangerId(){
+        Ranger ranger = newRanger();
+        int idBefore = ranger.getId();
+        ranger.save();
+        assertNotEquals(idBefore,ranger.getId());
     }
 
 }
