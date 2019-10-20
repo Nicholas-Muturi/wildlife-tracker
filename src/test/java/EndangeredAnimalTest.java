@@ -7,7 +7,7 @@ public class EndangeredAnimalTest {
     @Rule
     public DatabaseRule databaseRule = new DatabaseRule();
 
-    public EndangeredAnimal newAnimal() {
+    private EndangeredAnimal newAnimal() {
         return new EndangeredAnimal("Goat","Healthy","Young");
     }
 
@@ -20,6 +20,7 @@ public class EndangeredAnimalTest {
     @Test
     public void getName_returnAnimalsName(){
         EndangeredAnimal endangeredAnimal = newAnimal();
+        assertEquals("Goat", endangeredAnimal.getName());
     }
 
     @Test

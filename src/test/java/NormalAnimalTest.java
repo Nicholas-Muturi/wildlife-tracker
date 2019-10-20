@@ -21,6 +21,7 @@ public class NormalAnimalTest {
     @Test
     public void getName_returnAnimalsName(){
         NormalAnimal normalAnimal = newAnimal();
+        assertEquals("Goat", normalAnimal.getName());
     }
 
     @Test
