@@ -58,6 +58,15 @@ public class SightingTest {
         assertNotEquals(idBefore,sighting.getId());
     }
 
+    @Test
+    public void find_searchForSighting_true(){
+        Sighting sighting1 = newSighting();
+        Sighting sighting2 = new Sighting(2,"Zone 2",2);
+        sighting1.save();
+        sighting2.save();
+        assertTrue(Sighting.find(sighting2.getId()).equals(sighting2));
+    }
+
 
 
 

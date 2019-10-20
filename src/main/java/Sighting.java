@@ -57,12 +57,12 @@ public class Sighting {
 
     /*-------------- DB OPERATIONS --------------*/
     public void save(){
-        String sql = "INSERT INTO sightings(animalid,location,time,rangerid) values (:animalid,:location,:time,:rangerid)";
+        String sql = "INSERT INTO sightings(animalid,location,timestamp,rangerid) values (:animalid,:location,:timestamp,:rangerid)";
         try(Connection con = DB.sql2o.open()){
             this.id = (int) con.createQuery(sql,true)
                     .addParameter("animalid",this.animalid)
                     .addParameter("location",this.location)
-                    .addParameter("time",this.timestamp)
+                    .addParameter("timestamp",this.timestamp)
                     .addParameter("rangerid",this.rangerid)
                     .executeUpdate()
                     .getKey();
