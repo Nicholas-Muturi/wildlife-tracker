@@ -1,10 +1,11 @@
 import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 import java.util.Objects;
 
 public class NormalAnimal extends Animal {
-    public static final String type = "Not Endangered";
+    private static final String type = "Not Endangered";
 
     public NormalAnimal(String name, String health, String age) {
         this.name = name;
@@ -82,6 +83,8 @@ public class NormalAnimal extends Animal {
                     .addParameter("type",type)
                     .executeUpdate()
                     .getKey();
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
         }
     }
 

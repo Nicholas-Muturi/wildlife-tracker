@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class EndangeredAnimal extends Animal {
-    public static final String type = "Not Endangered";
+    private static final String type = "Not Endangered";
 
     public EndangeredAnimal(String name, String health, String age) {
         this.name = name;
@@ -85,21 +85,22 @@ public class EndangeredAnimal extends Animal {
         }
     }
 
-    public static List<NormalAnimal> all(){
+    public static List<EndangeredAnimal> all(){
         String sql = "SELECT * FROM animals where type=:type";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("type",type)
-                    .executeAndFetch(NormalAnimal.class);
+                    .executeAndFetch(EndangeredAnimal.class);
         }
     }
 
-    public static NormalAnimal find(int searchId){
+    public static EndangeredAnimal find(int searchId){
         String sql = "SELECT * FROM animals where (id=:id AND type=:type)";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
+                    .addParameter("id",searchId)
                     .addParameter("type",type)
-                    .executeAndFetchFirst(NormalAnimal.class);
+                    .executeAndFetchFirst(EndangeredAnimal.class);
         }
     }
 
