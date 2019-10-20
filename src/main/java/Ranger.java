@@ -1,10 +1,12 @@
+import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class Ranger {
     private int id;
-    private int name;
+    private String name;
 
-    public Ranger(int name) {
+    public Ranger(String name) {
         this.name = name;
     }
 
@@ -25,7 +27,23 @@ public class Ranger {
         return id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
+
+    /*-------------- DB OPERATIONS --------------*/
+    public void save(){}
+
+    public static List<Ranger> all(){
+        return null;
+    }
+
+    public static Random find(){
+        return null;
+    }
+
+    public List<Sighting> mySightings(){
+        return null;
+    }
+
 }
