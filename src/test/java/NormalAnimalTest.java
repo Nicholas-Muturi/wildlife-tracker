@@ -3,7 +3,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-@SuppressWarnings("ALL")
 public class NormalAnimalTest {
 
     @Rule
@@ -41,5 +40,14 @@ public class NormalAnimalTest {
         NormalAnimal normalAnimal = newAnimal();
         assertEquals("Not Endangered", normalAnimal.getType());
     }
+
+    @Test
+    public void save_savedToDb_int(){
+        NormalAnimal normalAnimal = newAnimal();
+        normalAnimal.save();
+        assertEquals(normalAnimal.getId(),NormalAnimal.all().get(0).getId());
+    }
+
+
 
 }

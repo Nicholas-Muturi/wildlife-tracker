@@ -1,7 +1,10 @@
+import org.sql2o.Connection;
+
+import java.util.List;
 import java.util.Objects;
 
 public class EndangeredAnimal extends Animal {
-    private static final String type = "Not Endangered";
+    public static final String type = "Not Endangered";
 
     public EndangeredAnimal(String name, String health, String age) {
         this.name = name;
@@ -60,12 +63,44 @@ public class EndangeredAnimal extends Animal {
         return type;
     }
 
-    public static String[] getHealthTypes() {
+    /*public static String[] getHealthTypes() {
         return healthTypes;
     }
 
     public static String[] getAgeTypes() {
         return ageTypes;
+    }*/
+
+    /* ----------------- DB OPERATIONS ---------------- */
+    public void save(){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO animals(name,health, age, type) values (:name,:health,:age,:type)";
+            this.id = (int) con.createQuery(sql,true)
+                    .addParameter("name", this.name)
+                    .addParameter("health", this.health)
+                    .addParameter("age",this.age)
+                    .addParameter("type",type)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    public static List<NormalAnimal> all(){
+        String sql = "SELECT * FROM animals where type=:type";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("type",type)
+                    .executeAndFetch(NormalAnimal.class);
+        }
+    }
+
+    public static NormalAnimal find(int searchId){
+        String sql = "SELECT * FROM animals where (id=:id AND type=:type)";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("type",type)
+                    .executeAndFetchFirst(NormalAnimal.class);
+        }
     }
 
 }
