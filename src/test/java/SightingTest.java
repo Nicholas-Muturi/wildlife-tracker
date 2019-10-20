@@ -61,7 +61,7 @@ public class SightingTest {
     @Test
     public void find_searchForSighting_true(){
         Sighting sighting1 = newSighting();
-        Sighting sighting2 = new Sighting(2,"Zone 2",2);
+        Sighting sighting2 = new Sighting(2,"Zone B",2);
         sighting1.save();
         sighting2.save();
         assertTrue(Sighting.find(sighting2.getId()).equals(sighting2));
@@ -70,7 +70,7 @@ public class SightingTest {
     @Test
     public void all_getAllSightings_true(){
         Sighting sighting1 = newSighting();
-        Sighting sighting2 = new Sighting(2,"Zone 2",2);
+        Sighting sighting2 = new Sighting(2,"Zone B",2);
         sighting1.save();
         sighting2.save();
         assertTrue(Sighting.all().contains(sighting1));
@@ -80,10 +80,22 @@ public class SightingTest {
     @Test
     public void all_getAllLocations_true(){
         Sighting sighting1 = newSighting();
-        Sighting sighting2 = new Sighting(2,"Zone 2",2);
+        Sighting sighting2 = new Sighting(2,"Zone B",2);
         sighting1.save();
         sighting2.save();
         assertEquals(2, Sighting.allLocations().size());
+    }
+
+    @Test
+    public void filter_getSightingInSingleLocation_true(){
+        Sighting sighting1 = newSighting();
+        Sighting sighting2 = new Sighting(2,"Zone B",2);
+        Sighting sighting3 = new Sighting(3,"Zone A",3);
+        sighting1.save();
+        sighting2.save();
+        sighting3.save();
+        assertTrue(Sighting.allSightingsInLocation("Zone A").contains(sighting1));
+        assertTrue(Sighting.allSightingsInLocation("Zone A").contains(sighting3));
     }
 
 
