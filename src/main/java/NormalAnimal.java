@@ -98,6 +98,7 @@ public class NormalAnimal extends Animal {
         String sql = "SELECT * FROM animals where (id=:id AND type=:type)";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
+                    .addParameter("id",searchId)
                     .addParameter("type",type)
                     .executeAndFetchFirst(NormalAnimal.class);
         }

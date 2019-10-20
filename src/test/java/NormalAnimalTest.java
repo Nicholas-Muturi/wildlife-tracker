@@ -48,6 +48,13 @@ public class NormalAnimalTest {
         assertEquals(normalAnimal.getId(),NormalAnimal.all().get(0).getId());
     }
 
+    @Test
+    public void find_locateNormalAnimal_Name(){
+        NormalAnimal normalAnimal = newAnimal();
+        normalAnimal.save();
+        NormalAnimal foundAnimal = NormalAnimal.find(normalAnimal.getId());
+        assertEquals(normalAnimal,foundAnimal);
+    }
 
 
 }
