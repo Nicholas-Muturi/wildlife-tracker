@@ -1,6 +1,8 @@
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @SuppressWarnings("ConstantConditions")
@@ -31,6 +33,16 @@ public class RangerTest {
         int idBefore = ranger.getId();
         ranger.save();
         assertNotEquals(idBefore,ranger.getId());
+    }
+
+    @Test
+    public void all_getAllRangers(){
+        Ranger ranger = newRanger();
+        Ranger ranger1 = new Ranger("Stark");
+        ranger.save();
+        ranger1.save();
+        assertTrue(Ranger.all().contains(ranger));
+        assertTrue(Ranger.all().contains(ranger1));
     }
 
 }

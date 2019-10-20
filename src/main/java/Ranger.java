@@ -18,7 +18,7 @@ public class Ranger {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ranger ranger = (Ranger) o;
-        return name == ranger.name;
+        return name.equals(ranger.name);
     }
 
     @Override
@@ -48,10 +48,13 @@ public class Ranger {
     }
 
     public static List<Ranger> all(){
-        return null;
+       try(Connection con = DB.sql2o.open()){
+           return con.createQuery("SELECT * FROM rangers")
+                   .executeAndFetch(Ranger.class);
+       }
     }
 
-    public static Random find(){
+    public static Random find(int searchId){
         return null;
     }
 
