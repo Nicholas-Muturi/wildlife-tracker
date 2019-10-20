@@ -1,16 +1,17 @@
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 public class Sighting {
     private int animalid;
     private String location;
-    private Timestamp time;
+    private Timestamp timestamp;
     private int rangerid;
 
-    public Sighting(int animalid, String location, Timestamp time, int rangerid) {
+    public Sighting(int animalid, String location, int rangerid) {
         this.animalid = animalid;
         this.location = location;
-        this.time = time;
+        this.timestamp = new Timestamp(new Date().getTime());
         this.rangerid = rangerid;
     }
 
@@ -21,13 +22,12 @@ public class Sighting {
         Sighting sighting = (Sighting) o;
         return animalid == sighting.animalid &&
                 rangerid == sighting.rangerid &&
-                Objects.equals(location, sighting.location) &&
-                Objects.equals(time, sighting.time);
+                Objects.equals(location, sighting.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(animalid, location, time, rangerid);
+        return Objects.hash(animalid, location, rangerid);
     }
 
     public int getAnimalid() {
@@ -38,8 +38,8 @@ public class Sighting {
         return location;
     }
 
-    public Timestamp getTime() {
-        return time;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
     public int getRangerid() {
