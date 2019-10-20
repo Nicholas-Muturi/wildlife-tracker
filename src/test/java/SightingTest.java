@@ -50,4 +50,16 @@ public class SightingTest {
         assertEquals(dateFormat.format(testTimestamp),dateFormat.format(sighting.getTimestamp()));
     }
 
+    @Test
+    public void save_savesSightingIntoDB_true(){
+        Sighting sighting = newSighting();
+        int idBefore = sighting.getId();
+        sighting.save();
+        assertNotEquals(idBefore,sighting.getId());
+    }
+
+
+
+
+
 }
