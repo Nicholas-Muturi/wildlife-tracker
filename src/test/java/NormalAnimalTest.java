@@ -8,7 +8,7 @@ public class NormalAnimalTest {
     @Rule
     public DatabaseRule databaseRule = new DatabaseRule();
 
-    public NormalAnimal newAnimal() {
+    private NormalAnimal newAnimal() {
         return new NormalAnimal("Goat","Healthy","Young");
     }
 
