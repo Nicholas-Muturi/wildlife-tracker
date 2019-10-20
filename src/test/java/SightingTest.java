@@ -77,6 +77,16 @@ public class SightingTest {
         assertTrue(Sighting.all().contains(sighting2));
     }
 
+    @Test
+    public void all_getAllLocations_true(){
+        Sighting sighting1 = newSighting();
+        Sighting sighting2 = new Sighting(2,"Zone 2",2);
+        sighting1.save();
+        sighting2.save();
+        assertEquals(2, Sighting.allLocations().size());
+    }
+
+
 
 
 

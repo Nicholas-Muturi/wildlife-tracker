@@ -93,6 +93,14 @@ public class Sighting {
         }
     }
 
+    public static List<Sighting> allSightingsInLocation(String locationFilter){
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery("SELECT * FROM sightings where location = :location")
+                    .addParameter("location",locationFilter)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
 
 
 }
