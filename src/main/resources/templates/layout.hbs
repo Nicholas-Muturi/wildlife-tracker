@@ -2,7 +2,7 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <title>{{#block "title"}}Hero Squad{{/block}}</title>
+        <title>{{#block "title"}}Wildlife Tracker{{/block}}</title>
         <link href="https://fonts.googleapis.com/css?family=Mukta|Nunito|Poppins:500&display=swap" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <link rel='stylesheet' href='/app.css'>
@@ -11,19 +11,20 @@
 {{/block}}
 <!--begin main template-->
 <div class="container-fluid">
-    <nav class="navbar static-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Moringa Wildlife Service</a>
+    <nav class="navbar static-top navbar-expand-lg navbar-light bg-light">
+        <img src="/images/logo_nav.png" class="navbar-brand" href="/" alt="brand logo" id="brandLogo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {{#block "navlinks"}}
                 {{/block}}
             </ul>
         </div>
     </nav>
+
     <div class="container">
         {{#block "content"}}
         {{/block}}
@@ -35,6 +36,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
     </body>
     </html>
 {{/block}}

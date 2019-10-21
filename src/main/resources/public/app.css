@@ -1,4 +1,27 @@
+body {
+    font-family: 'Nunito',sans-serif;
+}
+
 .container-fluid {
     padding-left: 0px;
     padding-right: 0px;
+}
+
+nav {
+    font-family: 'Mukta',sans-serif;
+    font-size: 18px;
+    background: white;
+}
+
+nav .active {
+    text-decoration: underline;
+    color: #0B9444;
+}
+
+#brandLogo {
+    margin: 0px auto 0px auto;
+}
+
+.carousel-item img{
+  height: 50%:
 }
