@@ -68,8 +68,4 @@ public class RangerTest {
         assertEquals(1,Ranger.all().size());
     }
 
-
-
-
-
 }

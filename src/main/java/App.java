@@ -39,6 +39,7 @@ public class App {
 
             Ranger newRanger = new Ranger(rangerName);
             newRanger.save();
+
             if(animalType.equalsIgnoreCase("endangered")){
                 EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName,animalHealth,animalAge);
                 endangeredAnimal.save();
@@ -51,7 +52,7 @@ public class App {
                 Sighting newSighting = new Sighting(normalAnimal.getName(),location,newRanger.getId());
                 newSighting.save();
             }
-            return new ModelAndView(model,"index.hbs");
+            return new ModelAndView(model,"success.hbs");
         },new HandlebarsTemplateEngine());
 
 

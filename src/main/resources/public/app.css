@@ -21,3 +21,12 @@ nav .active {
 #brandLogo {
     margin: 0px auto 0px auto;
 }
+
+/* ----------- success page --------------*/
+#success-jumbotron {
+    background: url('https://www.tokkoro.com/picsup/2955165-ultra-wide-depth-of-field-nature___landscape-nature-wallpapers.jpg');
+    background-size: cover;
+    background-repeat: none;
+    background-position-y: 60%;
+    color: white;
+}
