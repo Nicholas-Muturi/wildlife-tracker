@@ -55,6 +55,21 @@ public class App {
             return new ModelAndView(model,"success.hbs");
         },new HandlebarsTemplateEngine());
 
+        //get: retrieve all sightings by location
+        get("/sighting/all",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("sightings", Sighting.all());
+            return new ModelAndView(model,"sighting-locations.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //get: retrieve all sightings by location
+        get("/sighting/:location/details",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String filter = request.params("location");
+            model.put("sightings", Sighting.getAllSightingsInLocation(filter));
+            return new ModelAndView(model,"sighting-location-details.hbs");
+        },new HandlebarsTemplateEngine());
+
 
     }
 }

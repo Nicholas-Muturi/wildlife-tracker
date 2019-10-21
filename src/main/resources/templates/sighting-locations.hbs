@@ -9,21 +9,25 @@
             <a class="dropdown-item" href="#">Not Endangered</a>
         </div>
     </li>
-    <li class="nav-item"><a class="nav-link" href="#">Sighting Locations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="/sighting/all">Sighting Locations</a></li>
     <li class="nav-item"><a class="nav-link" href="/sighting/new">New Sighting</a></li>
 {{/partial}}
 
-{{#partial "preContent"}}
-    <div id="success-jumbotron" class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Success :)</h1>
-            <p class="lead">You may proceed to any page by you want</p>
-        </div>
-    </div>
-{{/partial}}
-
 {{#partial "content"}}
-    <h5 class="text-center">Information saved!</h5>
+    <h3 class="text-center">Sacred Jungle!</h3>
+    <h6 class="text-center">The animal conservancy</h6>
+    <hr>
+    {{#if sightings}}
+        <h2 class="text-center">All Locations</h2>
+        <ul class="list-group">
+        {{#each sightings}}
+            <li class="list-group-item"><a href="/sighting/{{location}}/details">{{location}}</a></li>
+        {{/each}}
+        </ul>
+    {{else}}
+        <h5 class="text-center">No locations have been added. Report a sighting to add a new location</h5>
+    {{/if}}
+
 {{/partial}}
 
 {{> layout.hbs}}

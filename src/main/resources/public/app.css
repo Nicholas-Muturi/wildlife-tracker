@@ -30,3 +30,8 @@ nav .active {
     background-position-y: 60%;
     color: white;
 }
+
+/* ----------- sighting locations --------------*/
+.list-group-item {
+    color: black;
+}

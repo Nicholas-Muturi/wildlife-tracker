@@ -85,7 +85,7 @@ public class SightingTest {
         Sighting sighting2 = newSighting2();
         sighting1.save();
         sighting2.save();
-        assertEquals(2, Sighting.allLocations().size());
+        assertEquals(2, Sighting.getAllLocations().size());
     }
 
     @Test
@@ -96,8 +96,8 @@ public class SightingTest {
         sighting1.save();
         sighting2.save();
         sighting3.save();
-        assertTrue(Sighting.allSightingsInLocation("Zone A").contains(sighting1));
-        assertTrue(Sighting.allSightingsInLocation("Zone A").contains(sighting3));
+        assertTrue(Sighting.getAllSightingsInLocation("Zone A").contains(sighting1));
+        assertTrue(Sighting.getAllSightingsInLocation("Zone A").contains(sighting3));
     }
 
 
