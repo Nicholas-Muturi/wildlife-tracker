@@ -1,0 +1,63 @@
+{{#partial "navlinks"}}
+    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">View Animals</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Sighting Locations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="/sighting/new">New Sighting</a></li>
+{{/partial}}
+
+{{#partial "content"}}
+    <h3 class="text-center">Sacred Jungle!</h3>
+    <h6 class="text-center">The animal conservancy</h6>
+    <hr>
+    <h3 class="text-center">Report a new sighting!</h3>
+    <form action="/sighting/new" method="post">
+        <div class="form-group">
+            <label for="rangerName">Ranger Name</label>
+            <input type="text" id="rangerName" name="rangerName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="animalName">Animal Name</label>
+            <input type="text" id="animalName" name="animalName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="animalAge">Animal Age</label>
+            <select name="animalAge" id="animalAge" class="form-control" required>
+                <option value="New Born">New Born</option>
+                <option value="Infant">Infant</option>
+                <option value="Young">Young</option>
+                <option value="Mature Adult">Mature Adult</option>
+                <option value="Old">Old</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="animalHealth">Animal Health</label>
+            <select name="animalHealth" id="animalHealth" class="form-control" required>
+                <option value="Healthy">Healthy</option>
+                <option value="Sick">Sick</option>
+                <option value="Malnourished">Malnourished</option>
+                <option value="Verge of death">Verge of death</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" class="form-control" list="prevLocations" required>
+            <datalist id="prevLocations">
+                {{#if sightings}}
+                    {{#each sightings}}
+                    <option value={{location}}>
+                    {{/each}}
+                {{/if}}
+            </datalist>
+        </div>
+        <div class="form-group">
+            <label for="animalType">Animal Health</label>
+            <select name="animalType" id="animalType" class="form-control" required>
+                <option value="Endangered">Endangered</option>
+                <option value="Not Endangered">Not Endangered</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-success">Submit</button>
+    </form>
+{{/partial}}
+
+{{> layout.hbs}}

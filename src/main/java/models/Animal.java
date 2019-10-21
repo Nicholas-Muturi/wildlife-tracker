@@ -10,7 +10,6 @@ public abstract class Animal {
     public String name;
     public String health;
     public String age;
-    public static final String[] healthTypes = {"Healthy","Sick","Verge of dying"};
     public static final String[] ageTypes = {"New born","Baby","Young adult","Adult","Elderly"};
 
     public static List<String> allAnimalNames(){

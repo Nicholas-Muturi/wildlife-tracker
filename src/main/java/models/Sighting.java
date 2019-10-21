@@ -10,20 +10,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class Sighting {
-    private int animalid;
     private String animalName;
     private int rangerid;
-    private String rangerName;
     private String location;
     private Timestamp timestamp;
-    private String formattedTimestamp;
     private int id;
 
-    public Sighting(int animalid, String location, int rangerid) {
-        this.animalid = animalid;
+    public Sighting(String animalName, String location, int rangerid) {
+        this.animalName = animalName;
         this.location = location.trim();
         this.timestamp = new Timestamp(new Date().getTime());
-        this.formattedTimestamp = DateFormat.getDateTimeInstance().format(timestamp);
         this.rangerid = rangerid;
     }
 
@@ -32,18 +28,18 @@ public class Sighting {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sighting sighting = (Sighting) o;
-        return animalid == sighting.animalid &&
+        return animalName.equals(sighting.animalName) &&
                 rangerid == sighting.rangerid &&
                 Objects.equals(location, sighting.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(animalid, location, rangerid);
+        return Objects.hash(animalName, location, rangerid);
     }
 
-    public int getAnimalid() {
-        return animalid;
+    public String getAnimalName() {
+        return animalName;
     }
 
     public String getLocation() {
@@ -54,8 +50,8 @@ public class Sighting {
         return timestamp;
     }
 
-    public String getProperTimestamp(){
-        return formattedTimestamp;
+    public String getReadableTimestamp(){
+        return DateFormat.getDateTimeInstance().format(getTimestamp());
     }
 
     public int getRangerid() {
@@ -68,10 +64,10 @@ public class Sighting {
 
     /*-------------- models.DB OPERATIONS --------------*/
     public void save(){
-        String sql = "INSERT INTO sightings(animalid,location,timestamp,rangerid) values (:animalid,:location,:timestamp,:rangerid)";
+        String sql = "INSERT INTO sightings(animalname,location,timestamp,rangerid) values (:animalName,:location,:timestamp,:rangerid)";
         try(Connection con = DB.sql2o.open()){
             this.id = (int) con.createQuery(sql,true)
-                    .addParameter("animalid",this.animalid)
+                    .addParameter("animalName",this.animalName)
                     .addParameter("location",this.location)
                     .addParameter("timestamp",this.timestamp)
                     .addParameter("rangerid",this.rangerid)
@@ -83,19 +79,7 @@ public class Sighting {
     }
 
     public String getRangerName(){
-        try(Connection con = DB.sql2o.open()){
-            return con.createQuery("SELECT name FROM rangers WHERE id=:id")
-                    .addParameter("id",getRangerid())
-                    .executeAndFetchFirst(String.class);
-        }
-    }
-
-    public String getAnimalName(){
-        try(Connection con = DB.sql2o.open()){
-            return con.createQuery("SELECT name FROM animals WHERE id=:id")
-                    .addParameter("id",getAnimalid())
-                    .executeAndFetchFirst(String.class);
-        }
+        return Ranger.find(rangerid).getName();
     }
 
     public static List<Sighting> all(){

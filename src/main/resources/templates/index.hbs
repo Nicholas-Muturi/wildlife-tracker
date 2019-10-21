@@ -2,22 +2,22 @@
     <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
     <li class="nav-item"><a class="nav-link" href="#">View Animals</a></li>
     <li class="nav-item"><a class="nav-link" href="#">Sighting Locations</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">New Sightings</a></li>
+    <li class="nav-item"><a class="nav-link" href="/sighting/new">New Sighting</a></li>
 {{/partial}}
 
 {{#partial "content"}}
-    <h3 class="text-center" id="test">Welcome to Sacred Jungle!</h3>
-    <h6 class="text-center" id="test">The animal conservancy</h6>
+    <h3 class="text-center">Welcome to Sacred Jungle!</h3>
+    <h6 class="text-center">The animal conservancy</h6>
     <hr>
     {{#if sightings}}
-        <h4 class="text-center" id="test">Here all the sightings so far</h4>
+        <h4 class="text-center">Here's all the animal sightings so far</h4>
         <table class="table text-center">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Animal Seen</th>
                 <th scope="col">Location</th>
-                <th scope="col">Time</th>
+                <th scope="col">Spotted On</th>
                 <th scope="col">Ranger</th>
             </tr>
             </thead>
@@ -25,18 +25,17 @@
             {{#each sightings}}
                 <tr>
                     <td>{{id}}</td>
-                    <td>{{animalid}}</td>
+                    <td>{{animalName}}</td>
                     <td>{{location}}</td>
-                    <td>{{timestamp}}</td>
-                    <td>{{rangerid}}</td>
+                    <td>{{readableTimestamp}}</td>
+                    <td>{{rangerName}}</td>
                 </tr>
             {{/each}}
             </tbody>
         </table>
     {{else}}
-        <p>No animals sighted yet. Report a sighting to have it appear here</p>
+        <p class="text-center">No animals sighted yet. Report a sighting to have it appear here</p>
     {{/if}}
-
 {{/partial}}
 
 {{> layout.hbs}}
