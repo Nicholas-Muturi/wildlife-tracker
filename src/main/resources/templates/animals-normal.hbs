@@ -1,6 +1,6 @@
 {{#partial "navlinks"}}
     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             View Animals
         </a>
@@ -10,12 +10,12 @@
         </div>
     </li>
     <li class="nav-item"><a class="nav-link" href="/rangers">Our Rangers</a></li>
-    <li class="nav-item active"><a class="nav-link" href="/sightings">Sighting Locations</a></li>
+    <li class="nav-item"><a class="nav-link" href="/sightings">Sighting Locations</a></li>
     <li class="nav-item"><a class="nav-link" href="/sighting/new">New Sighting</a></li>
 {{/partial}}
 
 {{#partial "preContent"}}
-    <div class="jumbotron jumbotrion-fluid sighting-jumbotron">
+    <div class="jumbotron jumbotrion-fluid animal-jumbotron">
         <div class="container">
             <h1 class="display-3">Sacred Jungle!</h1>
             <p class="lead">The animal conservancy</p>
@@ -24,15 +24,28 @@
 {{/partial}}
 
 {{#partial "content"}}
-    {{#if sightings}}
-        <h2 class="text-center">All Locations</h2>
-        <ul class="list-group">
-        {{#each sightings}}
-            <li class="list-group-item"><a href="/sightings/{{location}}/details">{{location}}</a></li>
-        {{/each}}
-        </ul>
+    {{#if normal}}
+        <table class="table text-center">
+            <h4 class="text-center">Below are all the non-endangered animals spotted by our rangers</h4>
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Health</th>
+                <th scope="col">Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each normal}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{health}}</td>
+                    <td>{{age}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
     {{else}}
-        <h5 class="text-center">No locations have been added. Report a sighting to add a new location</h5>
+        <h5 class="text-center">No animals sighted yet. Report a sighting to have it appear here</h5>
     {{/if}}
 
 {{/partial}}

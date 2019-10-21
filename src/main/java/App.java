@@ -20,6 +20,20 @@ public class App {
             return new ModelAndView(model,"index.hbs");
         },new HandlebarsTemplateEngine());
 
+        //get: retrieve endangered animals
+        get("/animals/endangered",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("engangered", EndangeredAnimal.all());
+            return new ModelAndView(model,"animals-endangered.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //get: retrieve non-endangered animals
+        get("/animals/not-endangered",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("normal", NormalAnimal.all());
+            return new ModelAndView(model,"animals-normal.hbs");
+        },new HandlebarsTemplateEngine());
+
         //get: New Sighting Form
         get("/sighting/new",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
@@ -66,6 +80,7 @@ public class App {
         get("/sightings/:location/details",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String filter = request.params("location");
+            model.put("location",filter);
             model.put("sightings", Sighting.getAllSightingsInLocation(filter));
             return new ModelAndView(model,"sighting-location-details.hbs");
         },new HandlebarsTemplateEngine());
@@ -87,8 +102,6 @@ public class App {
             model.put("rangers", Ranger.all());
             return new ModelAndView(model,"all-rangers.hbs");
         },new HandlebarsTemplateEngine());
-
-
 
     }
 }

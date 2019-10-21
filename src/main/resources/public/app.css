@@ -1,5 +1,13 @@
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Nunito',sans-serif;
+}
+
+#contentContainer{
+    margin-bottom: 70px;
 }
 
 .container-fluid {
@@ -22,16 +30,65 @@ nav .active {
     margin: 0px auto 0px auto;
 }
 
+.jumbotron {
+    border-radius: 0px;
+}
+
+.jumbotron h1{
+    margin-top: 30px;
+}
+
+.jumbotron p{
+    margin-bottom: 30px;
+}
+
+.default-jumbotron {
+    background: url('/images/index.jpeg');
+    background-position-y: center;
+    background-size: cover;
+    background-repeat: none;
+    color: white;
+}
+
+/* ----------- animals page --------------*/
+.animal-jumbotron {
+    background: url('/images/tiger.jpeg');
+    background-position-y: center;
+    background-size: cover;
+    background-repeat: none;
+    text-align: right;
+    color: white;
+}
+
 /* ----------- success page --------------*/
 #success-jumbotron {
     background: url('/images/wide-nature.jpg');
+    background-position-y: 60%;
     background-size: cover;
     background-repeat: none;
-    background-position-y: 60%;
     color: white;
 }
+
 
 /* ----------- sighting locations --------------*/
 .list-group-item {
     color: black;
+}
+
+.sighting-jumbotron {
+    background: url('/images/binoculars.jpeg');
+    background-position-y: 72%;
+    background-size: cover;
+    background-repeat: none;
+    color: #0B9444;
+}
+
+/* ----------- rangers --------------*/
+.ranger-jumbotron {
+    background: url('/images/view.jpeg');
+    background-position-y: 42%;
+    background-size: cover;
+    background-repeat: none;
+    text-align: right;
+    color: white;
 }
