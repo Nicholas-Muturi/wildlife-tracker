@@ -64,7 +64,7 @@ public class Ranger {
     }
 
     public List<Sighting> mySightings(){
-        String sql = "SELECT * FROM sighting WHERE rangerid=:id";
+        String sql = "SELECT * FROM sightings WHERE rangerid=:id";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql)
                     .addParameter("id",this.id)

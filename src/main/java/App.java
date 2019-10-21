@@ -56,19 +56,38 @@ public class App {
         },new HandlebarsTemplateEngine());
 
         //get: retrieve all sightings by location
-        get("/sighting/all",(request, response) -> {
+        get("/sightings",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("sightings", Sighting.all());
             return new ModelAndView(model,"sighting-locations.hbs");
         },new HandlebarsTemplateEngine());
 
         //get: retrieve all sightings by location
-        get("/sighting/:location/details",(request, response) -> {
+        get("/sightings/:location/details",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String filter = request.params("location");
             model.put("sightings", Sighting.getAllSightingsInLocation(filter));
             return new ModelAndView(model,"sighting-location-details.hbs");
         },new HandlebarsTemplateEngine());
+
+        //get: ranger details
+        get("/rangers/:id/details",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(request.params("id"));
+            Ranger foundRanger = Ranger.find(id);
+            List<Sighting> mySightings = foundRanger.mySightings();
+            model.put("ranger",foundRanger);
+            model.put("sightings",mySightings);
+            return new ModelAndView(model,"ranger-details.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //get: all rangers
+        get("/rangers",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("rangers", Ranger.all());
+            return new ModelAndView(model,"all-rangers.hbs");
+        },new HandlebarsTemplateEngine());
+
 
 
     }

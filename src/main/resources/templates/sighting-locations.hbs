@@ -9,7 +9,8 @@
             <a class="dropdown-item" href="#">Not Endangered</a>
         </div>
     </li>
-    <li class="nav-item active"><a class="nav-link" href="/sighting/all">Sighting Locations</a></li>
+    <li class="nav-item"><a class="nav-link" href="/rangers">Our Rangers</a></li>
+    <li class="nav-item active"><a class="nav-link" href="/sightings">Sighting Locations</a></li>
     <li class="nav-item"><a class="nav-link" href="/sighting/new">New Sighting</a></li>
 {{/partial}}
 
@@ -21,7 +22,7 @@
         <h2 class="text-center">All Locations</h2>
         <ul class="list-group">
         {{#each sightings}}
-            <li class="list-group-item"><a href="/sighting/{{location}}/details">{{location}}</a></li>
+            <li class="list-group-item"><a href="/sightings/{{location}}/details">{{location}}</a></li>
         {{/each}}
         </ul>
     {{else}}

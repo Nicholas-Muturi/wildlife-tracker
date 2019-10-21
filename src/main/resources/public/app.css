@@ -24,7 +24,7 @@ nav .active {
 
 /* ----------- success page --------------*/
 #success-jumbotron {
-    background: url('https://www.tokkoro.com/picsup/2955165-ultra-wide-depth-of-field-nature___landscape-nature-wallpapers.jpg');
+    background: url('/images/wide-nature.jpg');
     background-size: cover;
     background-repeat: none;
     background-position-y: 60%;

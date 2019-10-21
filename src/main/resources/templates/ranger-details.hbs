@@ -9,8 +9,8 @@
             <a class="dropdown-item" href="#">Not Endangered</a>
         </div>
     </li>
-    <li class="nav-item"><a class="nav-link" href="/rangers">Our Rangers</a></li>
-    <li class="nav-item active"><a class="nav-link" href="/sightings">Sighting Locations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="/rangers">Our Rangers</a></li>
+    <li class="nav-item"><a class="nav-link" href="/sightings">Sighting Locations</a></li>
     <li class="nav-item"><a class="nav-link" href="/sighting/new">New Sighting</a></li>
 {{/partial}}
 
@@ -18,21 +18,22 @@
     <h3 class="text-center">Sacred Jungle!</h3>
     <h6 class="text-center">The animal conservancy</h6>
     <hr>
-    <h4 class="text-center">Animals Spotted In This Region</h4>
+    <h4>Ranger {{ranger.name}}</h4>
+    <p>Below are the contributions of our very able ranger</p>
     <table class="table text-center">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Animal Seen</th>
+            <th scope="col">Location</th>
             <th scope="col">Time</th>
-            <th scope="col">Ranger</th>
         </tr>
         </thead>
         <tbody>
         {{#each sightings}}
             <tr>
                 <td>{{animalName}}</td>
+                <td>{{location}}</td>
                 <td>{{readableTimestamp}}</td>
-                <td><a href="/rangers/{{rangerid}}/details">{{rangerName}}</a></td>
             </tr>
         {{/each}}
         </tbody>
