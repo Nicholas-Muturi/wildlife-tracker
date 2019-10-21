@@ -25,7 +25,17 @@
         </div>
         <div class="form-group">
             <label for="animalName">Animal Name</label>
-            <input type="text" id="animalName" name="animalName" class="form-control" required>
+            {{#if sightings}}
+                <input type="text" id="animalName" name="animalName" class="form-control" list="prevAnimals" required>
+                <datalist id="prevAnimals">
+                    {{#each sightings}}
+                    <option value={{animalName}}>
+                    {{/each}}
+                </datalist>
+            {{else}}
+                <input type="text" id="animalName" name="animalName" class="form-control" required>
+            {{/if}}
+
         </div>
         <div class="form-group">
             <label for="animalAge">Animal Age</label>
@@ -48,14 +58,16 @@
         </div>
         <div class="form-group">
             <label for="location">Location</label>
-            <input type="text" id="location" name="location" class="form-control" list="prevLocations" required>
-            <datalist id="prevLocations">
-                {{#if sightings}}
+            {{#if sightings}}
+                <input type="text" id="location" name="location" class="form-control" list="prevLocations" required>
+                <datalist id="prevLocations">
                     {{#each sightings}}
-                    <option value={{location}}>
+                        <option value={{location}}>
                     {{/each}}
-                {{/if}}
-            </datalist>
+                </datalist>
+            {{else}}
+                <input type="text" id="location" name="location" class="form-control" required>
+            {{/if}}
         </div>
         <div class="form-group">
             <label for="animalType">Animal Health</label>
