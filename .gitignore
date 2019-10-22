@@ -42,8 +42,7 @@ out
 .gradle
 gradlew.bat
 settings.gradle
-models.Credentials.java
-src/main/java/models/Credentials.java
+
 
 # IntelliJ #
 ############
