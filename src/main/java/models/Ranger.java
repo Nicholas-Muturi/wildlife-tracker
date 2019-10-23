@@ -37,14 +37,16 @@ public class Ranger {
 
     /*-------------- models.DB OPERATIONS --------------*/
     public void save(){
-        String sql = "INSERT INTO rangers(name) VALUES(:name)";
-        try(Connection con = DB.sql2o.open()){
-            this.id = (int) con.createQuery(sql,true)
-                    .addParameter("name",this.name)
-                    .executeUpdate()
-                    .getKey();
-        } catch (Sql2oException ex) {
-            System.out.println(ex);
+        if(!crossCheck()){
+            String sql = "INSERT INTO rangers(name) VALUES(:name)";
+            try(Connection con = DB.sql2o.open()){
+                this.id = (int) con.createQuery(sql,true)
+                        .addParameter("name",this.name)
+                        .executeUpdate()
+                        .getKey();
+            } catch (Sql2oException ex) {
+                System.out.println(ex);
+            }
         }
     }
 
@@ -79,5 +81,17 @@ public class Ranger {
                     .executeUpdate();
         }
     }
+
+    private boolean crossCheck(){
+        for(Ranger ranger: Ranger.all()){
+            if(this.getName().equals(ranger.getName())){
+                this.id = ranger.id;
+                this.name = ranger.name;
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
