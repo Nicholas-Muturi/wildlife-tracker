@@ -22,7 +22,8 @@ public class NormalAnimal extends Animal {
         NormalAnimal normalAnimal = (NormalAnimal) o;
         return  Objects.equals(name, normalAnimal.name) &&
                 Objects.equals(health, normalAnimal.health) &&
-                Objects.equals(age, normalAnimal.age);
+                Objects.equals(age, normalAnimal.age) &&
+                Objects.equals(type, normalAnimal.getType());
     }
 
     @Override
@@ -65,14 +66,6 @@ public class NormalAnimal extends Animal {
     public String getType() {
         return type;
     }
-
-    /*public static String[] getHealthTypes() {
-        return healthTypes;
-    }
-
-    public static String[] getAgeTypes() {
-        return ageTypes;
-    }*/
 
     /* ----------------- models.DB OPERATIONS ---------------- */
     public void save(){

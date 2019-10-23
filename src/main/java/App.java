@@ -33,7 +33,7 @@ public class App {
         //get: retrieve endangered animals
         get("/animals/endangered",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("engangered", EndangeredAnimal.all());
+            model.put("endangered", EndangeredAnimal.all());
             return new ModelAndView(model,"animals-endangered.hbs");
         },new HandlebarsTemplateEngine());
 
@@ -47,6 +47,7 @@ public class App {
         //get: New Sighting Form
         get("/sighting/new",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("ages",Animal.ageTypes);
             model.put("sightings", Sighting.all());
             return new ModelAndView(model,"sighting-form.hbs");
         },new HandlebarsTemplateEngine());
@@ -61,10 +62,12 @@ public class App {
             String location = request.queryParams("location").trim();
             String animalType = request.queryParams("animalType").trim();
 
+            System.out.println(animalType);
+
             Ranger newRanger = new Ranger(rangerName);
             newRanger.save();
 
-            if(animalType.equalsIgnoreCase("endangered")){
+            if(animalType.equalsIgnoreCase("Endangered")){
                 EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName,animalHealth,animalAge);
                 endangeredAnimal.save();
                 Sighting newSighting = new Sighting(endangeredAnimal.getName(),location,newRanger.getId());

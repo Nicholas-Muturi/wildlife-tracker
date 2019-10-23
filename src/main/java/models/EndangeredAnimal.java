@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class EndangeredAnimal extends Animal {
-    private static final String type = "Not Endangered";
+    private static final String type = "Endangered";
 
     public EndangeredAnimal(String name, String health, String age) {
         this.name = name;
@@ -18,10 +18,11 @@ public class EndangeredAnimal extends Animal {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EndangeredAnimal EndangeredAnimal = (EndangeredAnimal) o;
-        return  Objects.equals(name, EndangeredAnimal.name) &&
-                Objects.equals(health, EndangeredAnimal.health) &&
-                Objects.equals(age, EndangeredAnimal.age);
+        EndangeredAnimal endangeredAnimal = (EndangeredAnimal) o;
+        return  Objects.equals(name, endangeredAnimal.name) &&
+                Objects.equals(health, endangeredAnimal.health) &&
+                Objects.equals(age, endangeredAnimal.age) &&
+                Objects.equals(type, endangeredAnimal.getType());
     }
 
     @Override
@@ -49,10 +50,6 @@ public class EndangeredAnimal extends Animal {
         return health;
     }
 
-    public void setHealth(String health) {
-        this.health = health;
-    }
-
     public String getAge() {
         return age;
     }
@@ -64,14 +61,6 @@ public class EndangeredAnimal extends Animal {
     public String getType() {
         return type;
     }
-
-    /*public static String[] getHealthTypes() {
-        return healthTypes;
-    }
-
-    public static String[] getAgeTypes() {
-        return ageTypes;
-    }*/
 
     /* ----------------- models.DB OPERATIONS ---------------- */
     public void save(){

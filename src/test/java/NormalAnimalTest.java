@@ -55,7 +55,7 @@ public class NormalAnimalTest {
         NormalAnimal normalAnimal = newAnimal();
         normalAnimal.save();
         NormalAnimal foundAnimal = NormalAnimal.find(normalAnimal.getId());
-        assertEquals(normalAnimal,foundAnimal);
+        assertTrue(normalAnimal.equals(foundAnimal));
     }
 
 

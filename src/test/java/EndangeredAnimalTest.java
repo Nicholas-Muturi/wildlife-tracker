@@ -39,7 +39,7 @@ public class EndangeredAnimalTest {
     @Test
     public void getStatus_returnAnimalsStatus(){
         EndangeredAnimal endangeredAnimal = newAnimal();
-        assertEquals("Not Endangered", endangeredAnimal.getType());
+        assertEquals("Endangered", endangeredAnimal.getType());
     }
 
     @Test
