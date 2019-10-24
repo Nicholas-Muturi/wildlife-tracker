@@ -61,8 +61,6 @@ public class App {
             String location = request.queryParams("location").trim();
             String animalType = request.queryParams("animalType").trim();
 
-            System.out.println(animalType);
-
             Ranger newRanger = new Ranger(rangerName);
             newRanger.save();
 
