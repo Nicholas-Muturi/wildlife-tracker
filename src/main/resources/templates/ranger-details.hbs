@@ -24,8 +24,16 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <h4>Ranger {{ranger.name}}</h4>
-    <p>Below are the contributions of our very able ranger</p>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Ranger {{ranger.name}}</h4>
+            <p>Below are the contributions of our very able ranger</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="/rangers/{{ranger.id}}/sighting/new" class="btn btn-outline-success" id="ranger-details-new-sighting">Report a new sighting</a>
+        </div>
+    </div>
+
     <table class="table text-center">
         <thead class="thead-dark">
         <tr>

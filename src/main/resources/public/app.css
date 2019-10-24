@@ -92,3 +92,7 @@ nav .active {
     text-align: right;
     color: white;
 }
+
+#ranger-details-new-sighting {
+    border-radius: 14px;
+}

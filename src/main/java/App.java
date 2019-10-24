@@ -47,7 +47,6 @@ public class App {
         //get: New Sighting Form
         get("/sighting/new",(request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("ages",Animal.ageTypes);
             model.put("sightings", Sighting.all());
             return new ModelAndView(model,"sighting-form.hbs");
         },new HandlebarsTemplateEngine());
@@ -114,6 +113,43 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             model.put("rangers", Ranger.all());
             return new ModelAndView(model,"all-rangers.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //get: form to add animals to specific ranger
+        get("/rangers/:id/sighting/new",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(request.params("id"));
+            Ranger specificRanger = Ranger.find(id);
+            model.put("specificRanger",specificRanger);
+            model.put("sightings", Sighting.all());
+            return new ModelAndView(model,"sighting-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //post: form to add animals to specific ranger
+        post("/rangers/:id/sighting/new",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(request.params("id"));
+            Ranger specificRanger = Ranger.find(id);
+            String animalName = request.queryParams("animalName").trim();
+            String animalAge = request.queryParams("animalAge").trim();
+            String animalHealth = request.queryParams("animalHealth").trim();
+            String location = request.queryParams("location").trim();
+            String animalType = request.queryParams("animalType").trim();
+
+            if(animalType.equalsIgnoreCase("Endangered")){
+                EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName,animalHealth,animalAge);
+                endangeredAnimal.save();
+                Sighting newSighting = new Sighting(endangeredAnimal.getName(),location,specificRanger.getId());
+                newSighting.save();
+            }
+            else{
+                NormalAnimal normalAnimal = new NormalAnimal(animalName,animalHealth,animalAge);
+                normalAnimal.save();
+                Sighting newSighting = new Sighting(normalAnimal.getName(),location,specificRanger.getId());
+                newSighting.save();
+            }
+
+            return new ModelAndView(model,"success.hbs");
         },new HandlebarsTemplateEngine());
 
     }

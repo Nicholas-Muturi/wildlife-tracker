@@ -25,11 +25,19 @@
 
 {{#partial "content"}}
     <h3 class="text-center">Report a new sighting!</h3>
-    <form action="/sighting/new" method="post">
-        <div class="form-group">
-            <label for="rangerName">Ranger Name</label>
-            <input type="text" id="rangerName" name="rangerName" class="form-control" required>
-        </div>
+    {{#if specificRanger}}
+        <form action="/rangers/{{specificRanger.id}}/sighting/new" method="post">
+            <div class="form-group">
+                <label for="rangerName">Ranger Name</label>
+                <input type="text" id="rangerName" name="rangerName" class="form-control" value="{{specificRanger.name}}" disabled>
+            </div>
+    {{else}}
+        <form action="/sighting/new" method="post">
+            <div class="form-group">
+                <label for="rangerName">Ranger Name</label>
+                <input type="text" id="rangerName" name="rangerName" class="form-control" required>
+            </div>
+    {{/if}}
         <div class="form-group">
             <label for="animalName">Animal Name</label>
             {{#if sightings}}
@@ -42,14 +50,15 @@
             {{else}}
                 <input type="text" id="animalName" name="animalName" class="form-control" required>
             {{/if}}
-
         </div>
         <div class="form-group">
             <label for="animalAge">Animal Age</label>
             <select name="animalAge" id="animalAge" class="form-control" required>
-                {{#each ages}}
-                    <option value={{this}}>{{this}}</option>
-                {{/each}}
+                <option value="New born">New born</option>
+                <option value="Baby">Baby</option>
+                <option value="Young adult">Young adult</option>
+                <option value="Adult">Adult</option>
+                <option value="Elderly">Elderly</option>
             </select>
         </div>
         <div class="form-group">
