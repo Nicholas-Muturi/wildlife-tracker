@@ -11,7 +11,6 @@ public abstract class Animal {
     public String name;
     public String health;
     public String age;
-    public static final String[] ageTypes = {"New born","Baby","Young adult","Adult","Elderly"};
 
     public static List<String> allAnimalNames(){
         try(Connection con = DB.sql2o.open()){
@@ -19,5 +18,7 @@ public abstract class Animal {
                     .executeAndFetch(String.class);
         }
     }
+
+
 
 }
